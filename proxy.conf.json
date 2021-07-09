@@ -1,0 +1,8 @@
+{
+"/api/*": {
+		"target": "http://klubba.dev2.gipl.inet:21015",
+		"secure": false,
+		"logLevel": "debug",
+		"changeOrigin": true
+	}
+}

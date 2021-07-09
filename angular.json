@@ -1,0 +1,214 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "klubba": {
+      "root": "",
+      "sourceRoot": "src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/browser",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.app.json",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+			  {
+					"glob": "**/*",
+					"input": "./node_modules/ngx-extended-pdf-viewer/assets/",
+					"output": "/assets/"
+				  },
+				  {
+					"glob": "**/*",
+					"input": "./node_modules/ngx-extended-pdf-viewer/assets-2.5/",
+					"output": "/assets/"
+				  }
+			],
+            "styles": [
+              "src/custom-theme.scss",			
+              "./node_modules/sweetalert2/dist/sweetalert2.min.css",
+              "src/assets/css/bootstrap.min.css",
+              "src/assets/css/bootstrap-grid.min.css",
+              "src/assets/css/bootstrap-reboot.min.css",
+              "src/assets/css/glyphicon.css",            
+              "src/assets/css/other/bootstrap-datepicker.css",
+              "src/assets/css/datetimepicker/bootstrap-datetimepicker.css",
+              "src/assets/css/datetimepicker/bootstrap-material-datetimepicker.css",
+			  "src/assets/css/bootstrap-colorpicker.min.css",	
+              "src/assets/css/animate.css",		
+              "src/assets/css/owl.carousel.min.css",
+              "src/assets/css/lightbox.css",
+              "src/assets/css/other/select2_new.css",
+              "src/assets/css/noty_theme_default.css",
+              "src/assets/css/jquery.noty.css",
+              "src/assets/css/jquery.raty.css",
+              "src/assets/css/materialdesignicons.css",
+              "./node_modules/angular-calendar/css/angular-calendar.css",
+              "./node_modules/@swimlane/ngx-datatable/assets/icons.css",
+              "./node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css",             
+              "src/assets/css/style.css",
+              "src/assets/css/home.css",
+              "src/assets/css/other/klubba.css",
+              "src/assets/css/other/developer.css",
+              "src/assets/css/other/anamika.css",
+              "src/assets/css/other/komal.css",
+              "src/assets/css/other/anand.css",
+              "src/assets/css/other/kamal.css",
+              "src/assets/css/other/anubhav.css"
+            ],
+            "scripts": [
+              "./node_modules/sweetalert2/dist/sweetalert2.min.js",
+              "src/assets/js/jquery.min.js",
+              "src/assets/js/popper.min.js",
+              "src/assets/js/bootstrap.min.js",
+              "src/assets/js/other/moment.js",              
+              "src/assets/js/other/bootstrap.datepicker.js",
+              "src/assets/js/other/bootstrap-colorpicker.min.js",
+              "src/assets/js/datetimepicker/bootstrap-datetimepicker.js",
+              "src/assets/js/datetimepicker/bootstrap-material-datetimepicker.js",
+              "src/assets/js/wow.min.js",
+              "src/assets/js/owl.carousel.min.js",
+              "src/assets/js/common.js",
+              "src/assets/js/other/select2.js",
+              "src/assets/js/other/jquery.noty.js",
+              "src/assets/js/other/jquery.raty.js",
+              "./node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js",
+              "./node_modules/hammerjs/hammer.min.js",
+              "src/assets/js/lightbox.min.js",
+              "src/assets/js/other/global.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "4mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "klubba:build",
+            "host": "0.0.0.0",
+            "port": 21049
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "klubba:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "klubba:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.spec.json",
+            "karmaConfig": "src/karma.conf.js",
+            "styles": [
+              "src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "src/tsconfig.app.json",
+              "src/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/server",
+            "main": "src/main.server.ts",
+            "tsConfig": "src/tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "c-e2e": {
+      "root": "e2e/",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "klubba:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "klubba:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "klubba"
+}
